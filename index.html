@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WaterBuddy UX Storyboard</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;color:#263247;font-family:Arial,sans-serif}
+header{padding:22px 28px;background:white;border-bottom:1px solid #ddd}
+header h1{margin:0 0 6px;font-size:26px}
+header p{margin:0;color:#718096;font-size:13px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:22px;padding:22px}
+.screens{display:grid;grid-template-columns:repeat(3,minmax(200px,1fr));gap:18px;align-items:start}
+.screen-card{background:white;border:1px solid #dfe5ed;border-radius:12px;padding:12px}
+.screen-card h2{font-size:13px;margin:0 0 10px;color:#526176}
+.phone{width:100%;max-width:250px;min-height:390px;margin:auto;border:6px solid #263247;border-radius:27px;background:white;overflow:hidden;display:flex;flex-direction:column}
+.status{display:flex;justify-content:space-between;padding:9px 12px 4px;font-size:9px;color:#718096}
+.content{padding:13px 13px 15px;display:flex;flex-direction:column;flex:1}
+.brand{display:flex;justify-content:center;align-items:center;gap:7px;font-size:17px;font-weight:bold;margin:8px 0 12px}
+.drop{background:#4388ed;color:white;border-radius:50%;padding:6px}
+.mascot{text-align:center;font-size:45px;margin:12px 0}
+h3{text-align:center;font-size:17px;margin:8px 0}
+.subtitle{text-align:center;color:#718096;font-size:10px;line-height:1.5;margin:0 0 12px}
+.button{background:#4388ed;color:white;border-radius:7px;text-align:center;padding:9px;margin-top:8px;font-size:10px;font-weight:bold}
+.button.light{background:#eaf2ff;color:#2864b6}
+.button.outline{background:white;color:#263247;border:1px solid #dce3ed}
+.button.red{background:#f9e9e9;color:#a83d45}
+.choice{border:1px solid #dce3ed;border-radius:7px;padding:9px;margin:4px 0;font-size:10px}
+.field{border:1px solid #dce3ed;border-radius:7px;padding:9px;margin:6px 0;font-size:10px;color:#58677b}
+.goal{text-align:center;font-size:26px;font-weight:bold;margin:12px 0;color:#2864b6}
+.progress-ring{width:112px;height:112px;border-radius:50%;background:conic-gradient(#4388ed 62%,#e5eaf1 0);display:grid;place-items:center;margin:10px auto;position:relative}
+.progress-ring:before{content:"";position:absolute;inset:9px;background:white;border-radius:50%}
+.progress-ring div{z-index:1;text-align:center;font-size:9px;color:#718096}
+.progress-ring strong{display:block;font-size:20px;color:#263247}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0}
+.stat{padding:8px;background:#f5f8fc;border-radius:7px;font-size:9px;color:#718096}
+.stat strong{display:block;font-size:14px;color:#263247;margin-top:4px}
+.mascot-message{text-align:center;font-size:10px;color:#3970bb;margin:6px 0}
+.nav{display:flex;justify-content:space-around;border-top:1px solid #e5eaf0;padding-top:9px;margin-top:auto;font-size:8px;color:#718096}
+.nav span{display:block;text-align:center;font-size:14px;margin-bottom:3px}
+.setting{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e5eaf0;padding:10px 0;font-size:10px}
+.switch{display:inline-block;width:30px;height:16px;background:#dce3ed;border-radius:10px}
+.switch:after{content:"";display:block;width:12px;height:12px;background:white;border-radius:50%;margin:2px}
+.small-note{font-size:9px;color:#718096;line-height:1.5;margin-top:10px}
+.bottom{margin-top:auto;padding-top:12px}
+
+.logic-panel{background:white;border:1px solid #dfe5ed;border-radius:12px;padding:17px;align-self:start}
+.logic-panel h2{font-size:18px;margin:0 0 8px}
+.logic-panel h3{font-size:12px;text-align:left;margin:16px 0 6px;color:#263247}
+.logic-panel p,.logic-panel li{font-size:11px;line-height:1.55;color:#657286}
+.logic-panel p{margin:5px 0}
+.logic-panel ul{padding-left:17px;margin:5px 0}
+.math{font-size:12px;line-height:1.7;color:#263247;margin:5px 0 9px}
+.math div{margin:3px 0}
+footer{padding:0 22px 20px;color:#718096;font-size:10px}
+
+@media(max-width:1100px){
+.layout{grid-template-columns:1fr}
+.logic-panel{order:2}
+.screens{grid-template-columns:repeat(3,minmax(180px,1fr))}
+}
+@media(max-width:700px){
+.screens{grid-template-columns:repeat(2,minmax(140px,1fr))}
+.layout{padding:12px}
+.screen-card{padding:8px}
+.phone{min-height:390px}
+}
+@media(max-width:430px){
+.screens{grid-template-columns:1fr}
+.phone{max-width:260px}
+}
+@media print{
+.layout{grid-template-columns:minmax(0,1fr) 260px;gap:12px;padding:12px}
+.screens{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.screen-card{break-inside:avoid;padding:7px}
+.phone{min-height:370px}
+.logic-panel{position:static}
+header{padding:12px 18px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>WaterBuddy — User Interface Storyboard</h1>
+<p>IBCP · Python Programming · Static UX Prototype</p>
+</header>
+
+<div class="layout">
+
+<section class="screens">
+
+<article class="screen-card">
+<h2>01 — Welcome Screen</h2>
+<div class="phone"><div class="status"><span>9:41</span><span>●●● ▰</span></div><div class="content">
+<div class="brand"><span class="drop">💧</span>WaterBuddy</div>
+<div class="mascot">💧</div>
+<h3>Stay hydrated!</h3>
+<p class="subtitle">Small sips. Better habits.</p>
+<p class="subtitle">Your simple daily water tracker.</p>
+<div class="bottom"><div class="button">Get Started</div><div class="button outline">I have an account</div></div>
+</div></div>
+</article>
+
+<article class="screen-card">
+<h2>02 — Age Selection</h2>
+<div class="phone"><div class="status"><span>9:41</span><span>●●● ▰</span></div><div class="content">
+<h3>Select your age</h3>
+<p class="subtitle">Choose your age group.</p>
+<div class="choice">Children (4–8)<br><strong>1,200 ml</strong></div>
+<div class="choice">Teens (9–13)<br><strong>1,700 ml</strong></div>
+<div class="choice">Adults (14–64)<br><strong>2,000–2,500 ml</strong></div>
+<div class="choice">Seniors (65+)<br><strong>1,700–2,000 ml</strong></div>
+<p class="small-note">Suggested targets vary by individual needs.</p>
+</div></div>
+</article>
+
+<article class="screen-card">
+<h2>03 — Suggested Goal</h2>
+<div class="phone"><div class="status"><span>9:41</span><span>●●● ▰</span></div><div class="content">
+<div class="mascot">💧</div>
+<h3>Your daily goal</h3>
+<p class="subtitle">Your suggested starting target is</p>
+<div class="goal">2,000 ml</div>
+<p class="subtitle">You can adjust this amount to suit your needs.</p>
+<div class="bottom"><div class="button">Use this goal</div><div class="button outline">Adjust my goal</div></div>
+</div></div>
+</article>
+
+<article class="screen-card">
+<h2>04 — Custom Goal</h2>
+<div class="phone"><div class="status"><span>9:41</span><span>●●● ▰</span></div><div class="content">
+<h3>Set your daily goal</h3>
+<p class="subtitle">Choose a daily target in millilitres.</p>
+<div class="field">Daily goal: 2,000 ml</div>
+<div class="choice">Suggested: 2,000 ml</div>
+<div class="choice">Custom: 2,500 ml</div>
+<p class="small-note">Input validation checks that the goal is a valid positive number.</p>
+<div class="bottom"><div class="button">Save goal</div><div class="button outline">Back</div></div>
+</div></div>
+</article>
+
+<article class="screen-card">
+<h2>05 — Home Dashboard</h2>
+<div class="phone"><div class="status"><span>9:41</span><span>●●● ▰</span></div><div class="content">
+<div class="brand" style="justify-content:space-between"><span>WaterBuddy</span><span>⚙</span></div>
+<p class="subtitle">Today's hydration</p>
+<div class="progress-ring"><div><strong>1,250</strong>ml / 2,000 ml</div></div>
+<div class="stats"><div class="stat">REMAINING<strong>750 ml</strong></div><div class="stat">PROGRESS<strong>62%</strong></div></div>
+<div class="mascot-message">😊 Nice progress. Keep sipping!</div>
+<div class="button">＋ Log water</div>
+<div class="nav"><div><span>⌂</span>Home</div><div><span>▥</span>Progress</div><div><span>↻</span>Reset</div><div><span>⚙</span>Settings</div></div>
+</div></div>
+</article>
+
+<article class="screen-card">
+<h2>06 — Log Water</h2>
+<div class="phone"><div class="status"><span>9:41</span><span>●●● ▰</span></div><div class="content">
+<div class="mascot">🥤</div>
+<h3>Log your water</h3>
+<p class="subtitle">How much water did you drink?</p>
+<div class="field">Amount: 250 ml</div>
+<div class="button light">+250 ml</div>
+<div class="button light">+500 ml</div>
+<div class="button light">+750 ml</div>
+<div class="button">Add water</div>
+<p class="small-note">Custom amounts are also supported.</p>
+</div></div>
+</article>
+
+<article class="screen-card">
+<h2>07 — Logging Confirmation</h2>
+<div class="phone"><div class="status"><span>9:41</span><span>●●● ▰</span></div><div class="content">
+<div class="mascot">💧</div>
+<h3>Nice work!</h3>
+<p class="subtitle">Your water has been added.</p>
+<div class="choice">Amount logged <strong style="float:right">250 ml</strong></div>
+<div class="choice">Total today <strong style="float:right">1,500 ml</strong></div>
+<div class="choice">Remaining <strong style="float:right">500 ml</strong></div>
+<div class="mascot-message">Keep going — you're doing well!</div>
+<div class="bottom"><div class="button">Back to home</div></div>
+</div></div>
+</article>
+
+<article class="screen-card">
+<h2>08 — Progress Details</h2>
+<div class="phone"><div class="status"><span>9:41</span><span>●●● ▰</span></div><div class="content">
+<h3>Today's progress</h3>
+<p class="subtitle">Here's how you're doing.</p>
+<div class="progress-ring"><div><strong>75%</strong>of daily goal</div></div>
+<div class="choice">Total consumed <strong style="float:right">1,500 ml</strong></div>
+<div class="choice">Daily goal <strong style="float:right">2,000 ml</strong></div>
+<div class="choice">Remaining <strong style="float:right">500 ml</strong></div>
+<div class="mascot-message">😊 Almost there!</div>
+<div class="bottom"><div class="button outline">Back to home</div></div>
+</div></div>
+</article>
+
+<article class="screen-card">
+<h2>09 — Reset Progress</h2>
+<div class="phone"><div class="status"><span>9:41</span><span>●●● ▰</span></div><div class="content">
+<div class="mascot">💧</div>
+<h3>Reset today's progress?</h3>
+<p class="subtitle">Your logged water total will return to zero. Your daily goal will stay the same.</p>
+<div class="button outline">Keep my progress</div>
+<div class="button red">Reset progress</div>
+<div class="small-note">A confirmation screen appears after resetting.</div>
+</div></div>
+</article>
+
+<article class="screen-card">
+<h2>10 — Reset Confirmation</h2>
+<div class="phone"><div class="status"><span>9:41</span><span>●●● ▰</span></div><div class="content">
+<div class="mascot">✅</div>
+<h3>Progress reset</h3>
+<p class="subtitle">Your water total is now zero. A fresh start!</p>
+<div class="stats"><div class="stat">TOTAL TODAY<strong>0 ml</strong></div><div class="stat">DAILY GOAL<strong>2,000 ml</strong></div></div>
+<div class="mascot-message">Let's start again!</div>
+<div class="bottom"><div class="button">Back to home</div></div>
+</div></div>
+</article>
+
+<article class="screen-card">
+<h2>11 — Settings</h2>
+<div class="phone"><div class="status"><span>9:41</span><span>●●● ▰</span></div><div class="content">
+<h3>Settings</h3>
+<p class="subtitle">Make WaterBuddy work for you.</p>
+<div class="setting"><span>Change age group</span><strong>›</strong></div>
+<div class="setting"><span>Change daily goal</span><strong>›</strong></div>
+<div class="setting"><span>Hydration reminders</span><strong>›</strong></div>
+<div class="setting"><span>View progress</span><strong>›</strong></div>
+<div class="setting"><span>Reset daily total</span><strong>›</strong></div>
+<div class="bottom"><div class="button outline">Back to home</div></div>
+</div></div>
+</article>
+
+<article class="screen-card">
+<h2>12 — Reminder Preferences</h2>
+<div class="phone"><div class="status"><span>9:41</span><span>●●● ▰</span></div><div class="content">
+<h3>Hydration reminders</h3>
+<p class="subtitle">Choose when to receive a reminder.</p>
+<div class="setting"><span>Enable reminders</span><span class="switch"></span></div>
+<div class="field">Reminder interval: Every 1 hour</div>
+<div class="field">First reminder: 10:00 AM</div>
+<div class="field">Next reminder: 11:00 AM</div>
+<p class="small-note">A clock checks whether a reminder is due and prevents duplicate alerts.</p>
+<div class="bottom"><div class="button">Save preferences</div></div>
+</div></div>
+</article>
+
+<article class="screen-card">
+<h2>13 — Reminder Notification</h2>
+<div class="phone"><div class="status"><span>9:41</span><span>●●● ▰</span></div><div class="content">
+<div class="mascot">💧</div>
+<h3>Time to drink water!</h3>
+<p class="subtitle">Take a short break and have a drink if you're thirsty.</p>
+<div class="choice">Today's total <strong style="float:right">1,500 ml</strong></div>
+<div class="choice">Daily goal <strong style="float:right">2,000 ml</strong></div>
+<div class="button">Got it</div>
+<div class="button light">Log water now</div>
+<p class="small-note">The reminder is triggered when the scheduled time is reached.</p>
+</div></div>
+</article>
+
+</section>
+
+<aside class="logic-panel">
+<h2>Mathematical Logic</h2>
+
+<h3>1. Age-Based Water Goal</h3>
+<p>Age group determines the suggested daily target:</p>
+<div class="math">
+<div>4–8 years = 1,200 ml</div>
+<div>9–13 years = 1,700 ml</div>
+<div>14–64 years = 2,000–2,500 ml</div>
+<div>65+ years = 1,700–2,000 ml</div>
+</div>
+
+<h3>2. Custom Goal Validation</h3>
+<div class="math">
+<div>Daily Goal = User's Chosen Target</div>
+<div>Valid goal: 250 ml ≤ Goal ≤ 10,000 ml</div>
+</div>
+
+<h3>3. Log Water</h3>
+<div class="math">
+<div>New Total = Previous Total + Water Added</div>
+<div>Example: 500 + 250 = 750 ml</div>
+<div>Valid entry: 0 ml &lt; Amount ≤ 5,000 ml</div>
+</div>
+
+<h3>4. Remaining Water</h3>
+<div class="math">
+<div>Remaining = Daily Goal − Total Consumed</div>
+<div>2,000 − 1,250 = 750 ml remaining</div>
+<div>Remaining cannot be less than 0 ml.</div>
+</div>
+
+<h3>5. Progress Percentage</h3>
+<div class="math">
+<div>Progress = (Total Consumed ÷ Daily Goal) × 100</div>
+<div>(1,500 ÷ 2,000) × 100 = 75%</div>
+<div>Maximum displayed progress = 100%</div>
+</div>
+
+<h3>6. Water Bottle Progress</h3>
+<div class="math">
+<div>Bottle Fill (%) = Progress (%)</div>
+<div>1,000 ÷ 2,000 × 100 = 50% full</div>
+</div>
+
+<h3>7. Mascot Feedback</h3>
+<div class="math">
+<div>Progress &lt; 75% → Encouragement</div>
+<div>75% ≤ Progress &lt; 100% → Motivation</div>
+<div>Progress ≥ 100% → Celebration</div>
+</div>
+
+<h3>8. Reset Progress</h3>
+<div class="math">
+<div>Total Consumed = 0 ml</div>
+<div>Progress = (0 ÷ Daily Goal) × 100 = 0%</div>
+</div>
+
+<h3>9. Reminders</h3>
+<div class="math">
+<div>Next Reminder = Last Reminder + Interval</div>
+<div>10:00 AM + 1 hour = 11:00 AM</div>
+<div>Show reminder when enabled and due.</div>
+</div>
+
+<h3>10. Save User Data</h3>
+<div class="math">
+<div>Saved Data = Age + Goal + Water Total + Reminder Settings</div>
+</div>
+
+<h3>11. New-Day Reset</h3>
+<div class="math">
+<div>If Current Date ≠ Saved Date:</div>
+<div>Total Consumed = 0 ml</div>
+</div>
+
+<h3>12. Goal Completion</h3>
+<div class="math">
+<div>Total Consumed &lt; Goal → Incomplete</div>
+<div>Total Consumed ≥ Goal → Complete</div>
+<div>Example: 2,000 ml ≥ 2,000 ml → Complete</div>
+</div>
+
+<h3>13. Error Handling</h3>
+<div class="math">
+<div>0 ml &lt; Water Entry ≤ 5,000 ml → Accept</div>
+<div>250 ml ≤ Daily Goal ≤ 10,000 ml → Accept</div>
+<div>Outside either range → Show Error</div>
+</div>
+
+</aside>
+
+</div>
+
+<footer>
+WaterBuddy static UX storyboard · 13 individual screens · Illustrative sample values · No interactive functionality
+</footer>
+
+</body>
+</html>
